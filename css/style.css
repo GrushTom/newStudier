@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    place-items: center;
+    background: #fff;
+    min-height: 100vh;
+    perspective: 1000px;
+    overflow: clip;
+
+}
+
+nav {
+    filter: drop-shadow(0.25rem 0.25rem 0.5rem #0005);
+    width: 100%;
+    max-width: 14rem;
+
+
+}
+
+
+
+ul {
+    position: relative;
+    perspective: 1000px;
+    list-style: none;
+}
+
+li {
+    height: 3rem;
+    display: flex;
+    background: linear-gradient(#00000005, #0000), #fff;
+    border-bottom: 1px solid #0001;
+    background-clip: padding-box;
+    box-shadow: inset 0 0 1rem -0.5rem #0002;
+    transition: 0.35s;
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+    animation: firstShow 0.5s ease-in-out, show 0.15s linear forwards;
+    animation-delay: calc(var(--i) * 0.1s+0.4s);
+
+}
+
+li:first-child {
+    border-radius: 1rem 1rem 0 0;
+}
+
+li:last-child {
+    border-radius: 0 0 1rem 1rem;
+}
+
+li:hover {
+    transform: translate3d(0, 0, 3rem);
+
+}
+
+li a {
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    padding: 0 1rem;
+    color: #000;
+    text-decoration: none;
+}
+
+li a i {
+    margin-right: 0.25rem;
+    width: 1rem;
+
+}
+
+/* 首次展示时的动画 */
+@keyframes firstShow {
+
+    0%,
+    100% {
+        transform: perspective(1000px) translate3d(0, 0, 0em);
+    }
+
+    50% {
+        transform: perspective(1000px) translate3d(0, 0, 3em);
+    }
+}
+
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion) {
+    nav* {
+        transition-duration: 0s !important;
+
+        animation-duration: 0s !important;
+    }
+
+}
